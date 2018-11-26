@@ -2,6 +2,17 @@
 
 Tools for managing Retropie or game ROMS and disk images.
 
+# backup-saves.py
+
+Backs up your save files under RetroPie/roms to a .tar.gz, or restores
+them. Useful when overwriting your RetroPie with a new build. You must
+still copy this file somewhere (not on the Pi itself).
+
+## Usage
+
+backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v backup
+backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v restore
+
 # rename-roms.py
 
 A simple script to move your collection of game ROMs and disk images

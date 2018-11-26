@@ -9,9 +9,9 @@ import re
 import sys
 
 # defaults
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 AUTHOR = "tyler@tolaris.com"
-options = None
+args = None
 
 def die(msg):
   """Print message and exit with error."""
@@ -47,20 +47,20 @@ def get_directory_name(filename, rules):
 
 def move_file(filename, rules):
   """Move a ROM to its correct destination directory."""
-  global options
+  global args
   if os.path.isfile(filename):
     subdirname = get_directory_name(filename, rules)
     head, tail = os.path.split(filename)
     if head is not None and subdirname is not None:
       filename_new = os.path.join(head, subdirname, tail)
-      options.verbose and print("{}\t->\t{}".format(filename, filename_new))
-      if not options.dry_run:
+      args.verbose and print("{}\t->\t{}".format(filename, filename_new))
+      if not args.dry_run:
         os.renames(filename, filename_new)
 
 def main_app():
   """Main entry point for CLI."""
   # argparse
-  global options
+  global args
   usage = "%(prog)s [options] [DIR] [...]"
   version = "%(prog)s " + VERSION + ", by " + AUTHOR
   parser = argparse.ArgumentParser(usage=usage, description=__doc__)
@@ -68,14 +68,14 @@ def main_app():
   parser.add_argument("--version", action="version", version=version)
   parser.add_argument("-v", "--verbose", action="store_true", help="display verbose output")
   parser.add_argument("-n", "--dry-run", action="store_true", help="dry run, don't rename files")
-  options = parser.parse_args()
-  if not options.roms:
+  args = parser.parse_args()
+  if not args.roms:
     parser.print_help()
     parser.exit(1)
 
   rules = get_rules()
 
-  for filename in options.roms:
+  for filename in args.roms:
     move_file(filename, rules)
 
 if __name__ == '__main__':
