@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# 2016-11-26 tyler@tolaris.com
 """Move ROMs into folders by country."""
 
 from __future__ import print_function
