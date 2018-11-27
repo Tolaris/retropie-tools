@@ -2,6 +2,13 @@
 
 Tools for managing Retropie or game ROMS and disk images.
 
+# Installation
+
+```
+git clone git@github.com:Tolaris/retropie-tools.git
+sudo cp retropie-tools/*.py /usr/local/bin/
+```
+
 # backup-saves.py
 
 Backs up your save files under RetroPie/roms to a .tar.gz, or restores
@@ -11,14 +18,12 @@ still copy this file somewhere (not on the Pi itself).
 ## Usage
 
 ```
-git clone git@github.com:Tolaris/retropie-tools.git
 retropie-tools/backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v backup
 scp /tmp/saves.tgz $user@$somewhere:/home/$user/
 
-# Now reinstall/reimage your Retropie
+# Now reinstall/reimage your Retropie, then install as above.
 
 scp $user@$somewhere:/home/$user/ /tmp/saves.tgz
-git clone git@github.com:Tolaris/retropie-tools.git
 retropie-tools/backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v restore
 ```
 
@@ -30,7 +35,11 @@ into directories named for the release region.
 ## Usage
 
 ```
-usage: rename-roms.py \[options\] \[DIR\] \[...\]
+# Test first with --dry-run:
+rename-roms.py --dry-run -v ~/Retropie/roms
+
+# Read output, make sure you are happy with changes. Then do it for real:
+rename-roms.py -v ~/Retropie/roms
 ```
 
 For a list of options, run: rename-roms.py -h
