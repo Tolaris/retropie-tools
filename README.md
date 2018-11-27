@@ -11,8 +11,15 @@ still copy this file somewhere (not on the Pi itself).
 ## Usage
 
 ```
-backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v backup
-backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v restore
+git clone git@github.com:Tolaris/retropie-tools.git
+retropie-tools/backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v backup
+scp /tmp/saves.tgz $user@$somewhere:/home/$user/
+
+# Now reinstall/reimage your Retropie
+
+scp $user@$somewhere:/home/$user/ /tmp/saves.tgz
+git clone git@github.com:Tolaris/retropie-tools.git
+retropie-tools/backup-saves.py -f /tmp/saves.tgz -r /home/pi/RetroPie/roms -v restore
 ```
 
 # rename-roms.py
